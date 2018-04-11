@@ -1,8 +1,9 @@
-from util import run
+from bqup.util import run
 
-class Project:
 
-  def __init__ (self, name):
+class Project(object):
+
+  def __init__(self, name):
     self.name = name
     self.datasets = []
 

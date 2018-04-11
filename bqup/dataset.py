@@ -1,10 +1,11 @@
-from util import run
+from bqup.util import run
 
-class Dataset:
+
+class Dataset(object):
 
   objects = []
 
-  def __init__ (self, project, name):
+  def __init__(self, project, name):
     self.project = project
     self.name = name
     project.datasets.append(self)
@@ -13,5 +14,5 @@ class Dataset:
   def list(cls, project):
     return list(map(
       lambda name: Dataset(project, name),
-      run("bq ls --project_id %s"%(project.name)).split()[2:]
+      run("bq ls --project_id {}".format(project.name)).split()[2:]
     ))
