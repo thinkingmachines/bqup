@@ -16,8 +16,8 @@ class DatasetObject(object):
         self.project.name, self.dataset.name, self.name))
       return self.source
 
-  @classmethod
-  def list(cls, project, dataset):
+  @staticmethod
+  def list(project, dataset):
     return list(map(
       lambda x: DatasetObject(project, dataset, *(x.split())),
       run("bq ls {}:{}".format(project.name, dataset.name)).split("\n")[2:-1]

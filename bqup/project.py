@@ -7,8 +7,8 @@ class Project(object):
     self.name = name
     self.datasets = []
 
-  @classmethod
-  def list(cls):
+  @staticmethod
+  def list():
     return list(map(
       lambda x: Project(x.split()[0]),
       run("bq ls -p").split("\n")[2:-1]

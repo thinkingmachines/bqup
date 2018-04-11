@@ -10,8 +10,8 @@ class Dataset(object):
     self.name = name
     project.datasets.append(self)
 
-  @classmethod
-  def list(cls, project):
+  @staticmethod
+  def list(project):
     return list(map(
       lambda name: Dataset(project, name),
       run("bq ls --project_id {}".format(project.name)).split()[2:]
