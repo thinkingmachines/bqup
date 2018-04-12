@@ -1,7 +1,7 @@
 from bqup.util import run
 
 
-class Dataset(object):
+class Dataset():
 
   objects = []
 

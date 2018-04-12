@@ -1,7 +1,7 @@
 from bqup.util import run
 
 
-class DatasetObject(object):
+class DatasetObject():
 
   def __init__(self, project, dataset, name, type):
     self.project = project
