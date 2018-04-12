@@ -1,6 +1,19 @@
 # bqup
 BigQuery backup scripts
 
-1. Just run with `python3 bqup.py`
-2. ???????
-3. PROFIT!!!1
+## Dependencies
+
+1. [Python BigQuery Client Library](https://cloud.google.com/bigquery/docs/reference/libraries#client-libraries-usage-python)
+
+## Development
+
+1. `python3 setup.py develop`
+1. `bqup`
+
+## Running with Service Account
+
+1. ???
+
+## Running with Personal Account (aka Running with Scissors)
+
+1. ???
