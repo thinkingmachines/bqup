@@ -1,4 +1,5 @@
-import os, shutil
+import os
+import shutil
 from google.cloud import bigquery
 from functools import partial
 from bqup.dataset import Dataset
@@ -6,27 +7,29 @@ from bqup.dataset import Dataset
 
 class Project():
 
-  datasets = []
+    datasets = []
 
-  def __init__(self, project_id = None):
-    self.client = bigquery.Client(project_id)
-    self.project_id = self.client.project
-    self.datasets = list(map(partial(Dataset, self), self.client.list_datasets()))
+    def __init__(self, project_id=None):
+        self.client = bigquery.Client(project_id)
+        self.project_id = self.client.project
+        self.datasets = list(
+            map(partial(Dataset, self), self.client.list_datasets()))
 
-  def print(self):
-    print("[PROJECT] {}".format(self.project_id))
-    for d in self.datasets:
-      d.print()
+    def print(self):
+        print("[PROJECT] {}".format(self.project_id))
+        for d in self.datasets:
+            d.print()
 
-  def export(self, directory, force=False):
-    """Exports a project's contents to the given directory in the filesystem."""
-    if os.path.exists(directory):
-      if force:
-        shutil.rmtree(directory)
-      else:
-        raise Exception("Cannot extract project contents to an existing directory: [{}]".format(directory))
+    def export(self, directory, force=False):
+        """Exports a project's contents to the given directory in the filesystem."""
+        if os.path.exists(directory):
+            if force:
+                shutil.rmtree(directory)
+            else:
+                raise Exception(
+                    "Cannot extract project contents to an existing directory: [{}]".format(directory))
 
-    project_dir = "{}/{}".format(directory, self.project_id)
-    os.makedirs(project_dir)
-    for d in self.datasets:
-      d.export(project_dir)
+        project_dir = "{}/{}".format(directory, self.project_id)
+        os.makedirs(project_dir)
+        for d in self.datasets:
+            d.export(project_dir)
