@@ -6,18 +6,15 @@ from bqup.project import Project
 
 
 def main():
-  if input("Load default project? (y/n)") == "y":
-    print("Loading project...")
-    p = Project()
-    print("Imported {}:".format(p.project_id))
-    for d in p.datasets:
-      print("\t{}".format(d.dataset_id))
-      for t in d.tables:
-        print("\t\t[{}] {}".format(t.table_type, t.table_id))
-        if t.view_query:
-          print(t.view_query)
-    if input("Write project to file system? (y/n)") == "y":
-      print("I don't know how to do that yet.")
+  print("Loading default project...")
+  p = Project()
+  print("Loaded {}".format(p.project_id))
+  if input("Print project contents on screen? (y/n)") == "y":
+    p.print()
+  if input("Forcibly (deleting existing files) write project to file system? (y/n)") == "y":
+    output_dir = "test_output"
+    p.export(output_dir, force=True)
+    print("Project {} exported to {}".format(p.project_id, output_dir))
 
 if __name__ == "__main__":
   main()
