@@ -7,13 +7,11 @@ BigQuery backup scripts
 
 ## Development
 
-1. `python3 setup.py develop`
-1. `bqup`
+1. Run `gcloud auth application-default login` to [run with your personal account](https://cloud.google.com/sdk/gcloud/reference/auth/application-default/login) (aka run with scissors)
+1. Install `bqup` with `python3 setup.py develop`
+1. Run `bqup`
 
-## Running with Service Account
+## Production
 
-1. ???
-
-## Running with Personal Account (aka Running with Scissors)
-
-1. ???
+1. Make / Choose a Service Account to use with BQ
+1. More steps coming soon
