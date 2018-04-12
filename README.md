@@ -9,7 +9,7 @@ BigQuery backup scripts
 
 1. Run `gcloud auth application-default login` to [run with your personal account](https://cloud.google.com/sdk/gcloud/reference/auth/application-default/login) (aka run with scissors)
 1. Install `bqup` with `python3 setup.py develop`
-1. Run `bqup`
+1. Run `bqup` (see Usage instructions in `main.py`)
 
 ## Production
 
