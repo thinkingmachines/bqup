@@ -1,20 +1,23 @@
 """
 Used for backing up views in BigQuery.
-Requires that `bq` be intalled and configured.
 """
 
-from bqup.dataset import Dataset
-from bqup.dataset_object import DatasetObject
 from bqup.project import Project
 
 
 def main():
-  # Code below is for testing
-  p = Project("tm-heartbeat")
-  d = Dataset(p, "eda")
-  o = DatasetObject(p, d, "matches_office_in_or_out", "VIEW")
-  print(o.get_source())
-
+  if input("Load default project? (y/n)") == "y":
+    print("Loading project...")
+    p = Project()
+    print("Imported {}:".format(p.project_id))
+    for d in p.datasets:
+      print("\t{}".format(d.dataset_id))
+      for t in d.tables:
+        print("\t\t[{}] {}".format(t.table_type, t.table_id))
+        if t.view_query:
+          print(t.view_query)
+    if input("Write project to file system? (y/n)") == "y":
+      print("I don't know how to do that yet.")
 
 if __name__ == "__main__":
   main()

@@ -1,18 +1,13 @@
-from bqup.util import run
+from functools import partial
+from bqup.table import Table
 
 
 class Dataset():
 
-  objects = []
+  tables = []
 
-  def __init__(self, project, name):
+  def __init__(self, project, bq_dataset):
     self.project = project
-    self.name = name
-    project.datasets.append(self)
-
-  @staticmethod
-  def list(project):
-    return list(map(
-      lambda name: Dataset(project, name),
-      run("bq ls --project_id {}".format(project.name)).split()[2:]
-    ))
+    self.project.datasets.append(self)
+    self.dataset_id = bq_dataset.dataset_id
+    self.tables = list(map(partial(Table, self), project.client.list_tables(bq_dataset.reference)))

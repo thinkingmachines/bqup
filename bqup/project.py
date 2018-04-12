@@ -1,15 +1,13 @@
-from bqup.util import run
+from google.cloud import bigquery
+from functools import partial
+from bqup.dataset import Dataset
 
 
 class Project():
 
-  def __init__(self, name):
-    self.name = name
-    self.datasets = []
+  datasets = []
 
-  @staticmethod
-  def list():
-    return list(map(
-      lambda x: Project(x.split()[0]),
-      run("bq ls -p").split("\n")[2:-1]
-    ))
+  def __init__(self, project_id = None):
+    self.client = bigquery.Client(project_id)
+    self.project_id = self.client.project
+    self.datasets = list(map(partial(Dataset, self), self.client.list_datasets()))
