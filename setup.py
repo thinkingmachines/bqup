@@ -8,5 +8,5 @@ setup(
     entry_points={
         "console_scripts": ["bqup=bqup.main:main"],
     },
-    install_requires=["docopt"]
+    install_requires=["docopt", "google-cloud"]
 )
