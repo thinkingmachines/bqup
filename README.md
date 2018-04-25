@@ -24,7 +24,7 @@ Options:
 1. Set up [application-default](https://cloud.google.com/sdk/gcloud/reference/auth/application-default/login): `gcloud auth application-default login`
 1. Install `bqup` with `pip3 install -e .` (or `python3 setup.py develop`)
 1. Run `bqup` (see [Usage](#usage))
-\
+
 ## Production
 
 1. `ssh` into the Google Instance you want to run `bqup` from.
