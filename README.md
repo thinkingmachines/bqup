@@ -31,3 +31,33 @@ Options:
 1. [Authenticate with Service Account](https://cloud.google.com/sdk/gcloud/reference/auth/activate-service-account)
 1. Run `gcloud auth application-default login`
 1. Install `bqup` by cloning this repo and running `pip3 install --user -e .` inside the repo.
+
+### Setting up regular backups
+
+1. On the machine that will run your backups, set up your git config (username, email, the usual).
+1. Make a directory to use as the Git repository. For this example, let's use `repo`:
+
+    ```
+    mkdir repo
+    cd repo
+    git init
+    ```
+
+1. Add the remote to the git repository (ideally a GCP repository). For this example, let's use `google`:
+
+    ```
+    git remote add google <url-to-remote-repository>
+    ```
+
+1. Create a script called `bqup.sh` that follows the following template. For our example, our repository is dedicated to backups, so we just assume that our `HEAD` is the latest and just push gently to `master`.
+
+    ```
+    #!/bin/bash
+    bqup -p <project-id> -d <path-to-repo>/projects -f
+    cd <path-to-repo>
+    git add .
+    git commit -m "Automated bqup"
+    git push <remote> <branch>
+    ```
+
+1. Add this script to your [crontab](https://awc.com.my/uploadnew/5ffbd639c5e6eccea359cb1453a02bed_Setting%20Up%20Cron%20Job%20Using%20crontab.pdf) to run as frequently as your heart desires.
