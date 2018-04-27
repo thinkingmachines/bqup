@@ -53,7 +53,7 @@ Options:
 
     ```
     #!/bin/bash
-    bqup -p <project-id> -d <path-to-repo>/projects -f
+    <path-to-bqup> -p <project-id> -d <path-to-repo>/projects -fv >> <path-to-log-file>
     cd <path-to-repo>
     git add .
     git commit -m "Automated bqup"
