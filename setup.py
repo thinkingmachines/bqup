@@ -8,5 +8,5 @@ setup(
     entry_points={
         "console_scripts": ["bqup=bqup.main:main"],
     },
-    install_requires=["docopt", "google-cloud"]
+    install_requires=["docopt", "google-cloud-bigquery==1.1.0"]
 )
