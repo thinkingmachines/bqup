@@ -4,16 +4,18 @@ from google.cloud import bigquery
 from functools import partial
 from bqup.dataset import Dataset
 
+print('BigQuery version: {}'.format(bigquery.__version__))
 
 class Project():
 
     datasets = []
 
-    def __init__(self, project_id=None):
+    def __init__(self, project_id=None, export_schema=False):
         self.client = bigquery.Client(project_id)
         self.project_id = self.client.project
+        print('Loading project {}...'.format(self.project_id))
         self.datasets = list(
-            map(partial(Dataset, self), self.client.list_datasets()))
+            map(partial(Dataset, self, export_schema), self.client.list_datasets()))
 
     def print(self):
         print("[PROJECT] {}".format(self.project_id))
