@@ -27,10 +27,14 @@ Options:
 
 ## Production
 
+1. Turn off your host Google Instance.
+1. Enable BigQuery on the instance's Cloud API Access Scopes
+1. Start the instance.
 1. `ssh` into the Google Instance you want to run `bqup` from.
-1. [Authenticate with Service Account](https://cloud.google.com/sdk/gcloud/reference/auth/activate-service-account)
-1. Run `gcloud auth application-default login`
+1. Authorize your Compute Instance Account to read from the target BigQuery project.
 1. Install `bqup` by cloning this repo and running `pip3 install --user -e .` inside the repo.
+1. Run `bqup`
+    - If it still doesn't work, check in IAM that the service account you are using has BigQuery read access.
 
 ### Setting up regular backups
 
