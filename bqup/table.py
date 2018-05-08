@@ -13,15 +13,15 @@ class Table():
         dataset.tables.append(self)
 
         if (self.table_type == 'VIEW'):
-            table = dataset.project.client.get_table(bq_table.reference)
+            table = dataset.project.client.get_table(bq_table)
             self.view_query = table.view_query
         elif (self.table_type == 'TABLE'):
             if export_schema:
-                table = dataset.project.client.get_table(bq_table.reference)
+                table = dataset.project.client.get_table(bq_table)
                 self.schema = list(map(lambda x: x.to_api_repr(), table.schema))
         elif (self.table_type == 'EXTERNAL'):
             if export_schema:
-                table = dataset.project.client.get_table(bq_table.reference)
+                table = dataset.project.client.get_table(bq_table)
                 self.schema = list(map(lambda x: x.to_api_repr(), table.schema))
         else:
             print('Unrecognized table type: {}'.format(self.table_type))
