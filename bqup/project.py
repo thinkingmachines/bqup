@@ -4,8 +4,6 @@ from google.cloud import bigquery
 from functools import partial
 from bqup.dataset import Dataset
 
-print('BigQuery version: {}'.format(bigquery.__version__))
-
 class Project():
 
     datasets = []

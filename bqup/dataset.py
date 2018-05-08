@@ -12,8 +12,14 @@ class Dataset():
         self.project.datasets.append(self)
         self.dataset_id = bq_dataset.dataset_id
         print('\tLoading dataset {}...'.format(self.dataset_id))
-        self.tables = list(
-            map(partial(Table, self, export_schema), project.client.list_dataset_tables(bq_dataset)))
+
+        # To support multiple version of google-cloud-bigquery
+        if hasattr(project.client, 'list_dataset_tables'):
+            self.tables = list(
+                map(partial(Table, self, export_schema), project.client.list_dataset_tables(bq_dataset)))
+        else:
+            self.tables = list(
+                map(partial(Table, self, export_schema), project.client.list_tables(bq_dataset.reference)))
 
     def print(self):
         print("\t[DATASET] {}".format(self.dataset_id))
