@@ -13,7 +13,9 @@ class Table():
         dataset.tables.append(self)
 
         if (self.table_type == 'VIEW'):
-            table = dataset.project.client.get_table(bq_table)
+            # To support multiple version of google-cloud-bigquery
+            ref = bq_table if hasattr(bq_table, 'path') else bq_table.reference
+            table = dataset.project.client.get_table(ref)
             self.view_query = table.view_query
         elif (self.table_type == 'TABLE'):
             if export_schema:
