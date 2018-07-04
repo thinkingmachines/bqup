@@ -23,6 +23,7 @@ Options:
 
 1. Set up `gcloud` to run with your personal account (aka run with scissors)
 1. Set up [application-default](https://cloud.google.com/sdk/gcloud/reference/auth/application-default/login): `gcloud auth application-default login`
+1. Install wheel: `pip3 install wheel`
 1. Install `bqup` with `pip3 install -e .` (or `python3 setup.py develop`)
 1. Run `bqup` (see [Usage](#usage))
 
