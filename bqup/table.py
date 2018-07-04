@@ -55,6 +55,6 @@ class Table:
             self.table_type, self.table_id, len(self.view_query)))
 
     def export(self, dataset_dir):
-        table_path = self._get_table_path(dataset_dir)
+        table_path = self._get_export_table_path(dataset_dir)
         with open(table_path, 'w') as f:
             f.write(self.to_file_contents())
