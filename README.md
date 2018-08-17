@@ -67,3 +67,44 @@ Options:
     ```
 
 1. Add this script to your [crontab](https://awc.com.my/uploadnew/5ffbd639c5e6eccea359cb1453a02bed_Setting%20Up%20Cron%20Job%20Using%20crontab.pdf) to run as frequently as your heart desires.
+
+## Policies
+
+### Maintenance
+
+#### Disclaimers
+
+bqup is maintained on a **best effort** basis:
+
+- No amount of official time is currently being dedicated to the regular
+maintenance of this project.
+- Thinking Machines does not make any guarantees about the quality of the
+software.
+
+#### Maintainers
+
+The official maintainers in charge of responding to issues and merging pull
+requests are:
+
+- Primary:
+    - [Pepe Bawagan](https://github.com/syk0saje)
+- Secondary:
+    - [Mark Steve Samson](https://github.com/marksteve)
+    - [Carlson Cheng](https://github.com/crcheng)
+
+### Contribution
+
+A list is maintained for all external contributors who have submitted pull
+requests that were subsequently approved. Users are allowed and encouraged to
+fork the project and submit pull requests and issues. All contributions must
+adhere to these guidelines:
+
+- [Commit messages](https://chris.beams.io/posts/git-commit/)
+- [Github flow](https://guides.github.com/introduction/flow/)
+
+Thinking Machines reserves the rights to:
+
+- refuse to resolve issues
+- close issues without resolution
+- request changes to pull requests
+- reject pull requests outright
