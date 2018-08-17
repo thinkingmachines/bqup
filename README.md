@@ -69,9 +69,9 @@ Options:
    ```
    pip3 install -e .
    ```
-   
+
    Alternatively, you can also install it using:
-   
+
    ```
    python3 setup.py develop
    ```
@@ -86,20 +86,11 @@ Scheduler](https://cloud.google.com/scheduler/)**
 1. Turn off your host Google Instance.
 2. Enable BigQuery on the instance's Cloud API Access Scopes
 3. Start the instance.
-4. `ssh` into the Google Instance you want to run bqup from.
-5. Authorize your Compute Instance Account to read from the target BigQuery
-   project.
-6. Install bqup.
-  
-   ```
-   $ git clone https://github.com/thinkingmachines/bqup.git
-   $ cd bqup
-   $ pip3 install --user -e .
-   ```
-
-7. Run bqup.
-    - If it still doesn't work, check in IAM that the service account you are
-      using has BigQuery read access.
+4. `ssh` into the Google Instance you want to run `bqup` from.
+5. Authorize your Compute Instance Account to read from the target BigQuery project.
+6. Install `bqup` via `pip install bqup`, optionally inside a [virtual environment](https://docs.python.org/3/library/venv.html).
+7. Run `bqup`
+    - If it still doesn't work, check in IAM that the service account you are using has BigQuery read access.
 
 ### Setting up regular backups
 
