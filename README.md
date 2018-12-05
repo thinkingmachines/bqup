@@ -30,6 +30,8 @@ Options:
 
 ## Production
 
+**Note: When deploying for a new GCP project, consider using [Cloud Scheduler](https://cloud.google.com/scheduler/)**
+
 1. Turn off your host Google Instance.
 1. Enable BigQuery on the instance's Cloud API Access Scopes
 1. Start the instance.
