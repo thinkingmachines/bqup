@@ -72,6 +72,27 @@ Options:
 
 1. Add this script to your [crontab](https://awc.com.my/uploadnew/5ffbd639c5e6eccea359cb1453a02bed_Setting%20Up%20Cron%20Job%20Using%20crontab.pdf) to run as frequently as your heart desires.
 
+## Distribution
+
+
+- Build the dist directory
+
+    ```sh
+    python3 setup.py bdist_wheel
+    ```
+
+- Test upload (optional, needs account)
+
+    ```sh
+    twine upload -u thinkdatasci --repository-url https://test.pypi.org/legacy/ dist/*
+    ```
+
+- Final upload
+
+    ```sh
+    twine upload -u thinkdatasci dist/*
+    ```
+
 ## Policies
 
 ### Maintenance
