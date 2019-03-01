@@ -74,10 +74,10 @@ Options:
 
 ## Distribution
 
-
-- Build the dist directory
+- Rebuild the `dist` directory
 
     ```sh
+    rm -rf dist
     python3 setup.py bdist_wheel
     ```
 
