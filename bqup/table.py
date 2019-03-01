@@ -13,18 +13,19 @@ class Table:
         self.table_type = bq_table.table_type
         dataset.tables.append(self)
 
+        # To support multiple versions of google-cloud-bigquery
+        ref = bq_table if hasattr(bq_table, 'path') else bq_table.reference
+
         if self.table_type == 'VIEW':
-            # To support multiple version of google-cloud-bigquery
-            ref = bq_table if hasattr(bq_table, 'path') else bq_table.reference
             table = dataset.project.client.get_table(ref)
             self.view_query = table.view_query
         elif self.table_type == 'TABLE':
             if export_schema:
-                table = dataset.project.client.get_table(bq_table)
+                table = dataset.project.client.get_table(ref)
                 self.schema = list(map(lambda x: x.to_api_repr(), table.schema))
         elif self.table_type == 'EXTERNAL':
             if export_schema:
-                table = dataset.project.client.get_table(bq_table)
+                table = dataset.project.client.get_table(ref)
                 self.schema = list(map(lambda x: x.to_api_repr(), table.schema))
         elif self.table_type == 'MODEL':
             print('\t\t\tMODEL table type detected, ignoring.')
