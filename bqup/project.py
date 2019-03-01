@@ -4,6 +4,7 @@ from google.cloud import bigquery
 from functools import partial
 from bqup.dataset import Dataset
 
+
 class Project():
 
     datasets = []
