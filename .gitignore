@@ -4,3 +4,4 @@ venv/
 test_output
 .idea/
 dist
+build
