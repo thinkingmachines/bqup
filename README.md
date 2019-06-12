@@ -2,6 +2,10 @@
 
 BigQuery backup scripts
 
+![How bqup works](https://thinkingmachin.es/stories/coding-safely-in-the-cloud/solution.png "How bqup works")
+
+For the story of bqup, see our [blog post](https://stories.thinkingmachin.es/coding-safely-in-the-cloud/)!
+
 ## Dependencies
 
 1. [Python BigQuery Client Library](https://cloud.google.com/bigquery/docs/reference/libraries#client-libraries-usage-python)
