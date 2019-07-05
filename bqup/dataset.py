@@ -4,10 +4,37 @@ from bqup.table import Table
 
 
 class Dataset():
+    """For storing all datasets and all the corresponding tables of a project.
+
+    Attributes
+    ----------
+    project : str
+        GCP Project containing the dataset
+
+    dataset_id : str
+        GCP Dataset ID of the dataset
+
+    tables : list
+        list of Tables that are part of the dataset
+    """
 
     tables = []
 
     def __init__(self, project, export_schema, bq_dataset):
+    	""" Creates a Datasets class
+
+        Parameters
+        ----------
+        project : str
+            GCP Project ID that contains the dataset
+
+        export_schema : bool
+            If True, will save schema of each table
+
+        bq_dataset : bigquery.dataset.DatasetListItem
+            From bigquery.Client
+
+        """
         self.project = project
         self.project.datasets.append(self)
         self.dataset_id = bq_dataset.dataset_id
@@ -16,17 +43,29 @@ class Dataset():
         # To support multiple version of google-cloud-bigquery
         if hasattr(project.client, 'list_dataset_tables'):
             self.tables = list(
-                map(partial(Table, self, export_schema), project.client.list_dataset_tables(bq_dataset)))
+                map(partial(Table, self, export_schema),
+                    project.client.list_dataset_tables(bq_dataset)))
         else:
             self.tables = list(
-                map(partial(Table, self, export_schema), project.client.list_tables(bq_dataset.reference)))
+                map(partial(Table, self, export_schema),
+                    project.client.list_tables(bq_dataset.reference)))
 
-    def print(self):
+    def print_info(self):
+        """ Print all the tables of a dataset"""
+
         print("\t[DATASET] {}".format(self.dataset_id))
         for t in self.tables:
-            t.print()
+            t.print_info()
 
     def export(self, project_dir):
+    	"""Make a directory for dataset and export schema of each table
+
+        Parameters
+        ----------
+        project_dir : str
+            Path to the project directory where schema will be saved
+
+        """
         dataset_dir = "{}/{}".format(project_dir, self.dataset_id)
         os.makedirs(dataset_dir)
         for t in self.tables:
