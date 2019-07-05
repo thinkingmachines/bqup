@@ -6,6 +6,24 @@ from bqup.dataset import Dataset
 
 
 class Project():
+    """Project that enables content exploration and exporting.
+
+    Parameters
+    ----------
+    project_id : str
+        A unique identifier for your project, composed of the project name and an assigned number.
+    export_schema : bool
+        If True, will save schema of each table.
+
+    Attributes
+    ----------
+    client : bigquery.client.Client
+        Client to bundle configuration needed for API requests.
+    project_id : str
+        A unique identifier for the project, composed of the project name and an assigned number.
+    datasets : list
+        Datasets within the project.
+    """
 
     datasets = []
 
@@ -16,13 +34,22 @@ class Project():
         self.datasets = list(
             map(partial(Dataset, self, export_schema), self.client.list_datasets()))
 
-    def print(self):
+    def print_info(self):
+        """Displays names of datasets, tables, and views as a hierarchical tree."""
         print("[PROJECT] {}".format(self.project_id))
         for d in self.datasets:
-            d.print()
+            d.print_info()
 
     def export(self, directory, force=False):
-        """Exports a project's contents to the given directory in the filesystem."""
+        """Exports a project's contents to the given directory in the filesystem.
+
+        Parameters
+        ----------
+        directory : path-like object
+            Directory to which the project's contents will be exported.
+        force : bool
+            If True and directory exists, will delete the directory and its contents.
+        """
         if os.path.exists(directory):
             if force:
                 shutil.rmtree(directory)
