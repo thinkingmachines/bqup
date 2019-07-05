@@ -76,7 +76,7 @@ Options:
    python3 setup.py develop
    ```
 
-5. Run `bqup` (see [Usage](#usage)).
+5. Run bqup (see [Usage](#usage)).
 
 ### Production
 
@@ -182,7 +182,7 @@ requests are:
 
 Thanks to all these wonderful people who've helped out with bqup:
 
-<table><tr><td align="center"><a href="https://github.com/jgtiu"><img src="https://avatars1.githubusercontent.com/u/33926951?s=400&v=4" width="100px;" alt="Jess"/><br /><sub><b>Jess</b></sub></a></td><td align="center"><a href="https://github.com/magtanggol03"><img src="https://avatars1.githubusercontent.com/u/25030847?s=400&v=4" width="100px;" alt="Ram"/><br /><sub><b>Ram</b></sub></a></td><td align="center"><a href="https://github.com/pberba"><img src="https://avatars2.githubusercontent.com/u/19956669?v=4" width="100px;" alt="Pepe Berba"/><br /><sub><b>Pepe Berba</b></sub></a></td><td align="center"><a href="https://github.com/tim-tmds"><img src="https://avatars2.githubusercontent.com/u/50472403?s=400&v=4" width="100px;" alt="Tim Pron"/><br /><sub><b>Tim Pron</b></sub></a></td><td align="center"><a href="https://github.com/enzoampil"><img src="https://avatars2.githubusercontent.com/u/39557688?s=400&v=4" width="100px;" alt="Enzo"/><br /><sub><b>Enzo</b></sub></a><br /></td><td align="center"><a href="https://github.com/ardieorden"><img src="https://avatars1.githubusercontent.com/u/17169362?s=400&v=4" width="100px;" alt="Ardie"/><br /><sub><b>Ardie</b></sub></a><br /></td></tr></table>w
+<table><tr><td align="center"><a href="https://github.com/jgtiu"><img src="https://avatars1.githubusercontent.com/u/33926951?s=400&v=4" width="100px;" alt="Jess"/><br /><sub><b>Jess</b></sub></a></td><td align="center"><a href="https://github.com/magtanggol03"><img src="https://avatars1.githubusercontent.com/u/25030847?s=400&v=4" width="100px;" alt="Ram"/><br /><sub><b>Ram</b></sub></a></td><td align="center"><a href="https://github.com/pberba"><img src="https://avatars0.githubusercontent.com/u/6505743?s=400&v=4" width="100px;" alt="Pepe Berba"/><br /><sub><b>Pepe Berba</b></sub></a></td><td align="center"><a href="https://github.com/tim-tmds"><img src="https://avatars2.githubusercontent.com/u/50472403?s=400&v=4" width="100px;" alt="Tim Pron"/><br /><sub><b>Tim Pron</b></sub></a></td><td align="center"><a href="https://github.com/enzoampil"><img src="https://avatars2.githubusercontent.com/u/39557688?s=400&v=4" width="100px;" alt="Enzo"/><br /><sub><b>Enzo</b></sub></a><br /></td><td align="center"><a href="https://github.com/ardieorden"><img src="https://avatars1.githubusercontent.com/u/17169362?s=400&v=4" width="100px;" alt="Ardie"/><br /><sub><b>Ardie</b></sub></a><br /></td></tr></table>
 
 
 ## Disclaimers
