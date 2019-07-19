@@ -6,4 +6,3 @@ steps:
   image: python:3.6-stretch
   commands:
   - pip install -r requirements.txt
-  - pytest tests/test.py
