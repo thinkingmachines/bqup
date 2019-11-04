@@ -21,7 +21,7 @@ class Dataset():
     tables = []
 
     def __init__(self, project, export_schema, bq_dataset):
-    	""" Creates a Datasets class
+        """ Creates a Datasets class
 
         Parameters
         ----------
@@ -58,7 +58,7 @@ class Dataset():
             t.print_info()
 
     def export(self, project_dir):
-    	"""Make a directory for dataset and export schema of each table
+        """Make a directory for dataset and export schema of each table
 
         Parameters
         ----------
