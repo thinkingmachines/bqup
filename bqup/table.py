@@ -20,6 +20,7 @@ class Table:
         self.table_id = bq_table.table_id
         print('\t\tLoading table/view {}...'.format(self.table_id))
         self.table_type = bq_table.table_type
+        self.export_schema = export_schema
         dataset.tables.append(self)
 
         # To support multiple versions of google-cloud-bigquery
@@ -95,6 +96,8 @@ class Table:
         dataset_dir : str
             Directory where dataset will be saved
         """
+        if not self.export_schema and self.table_type != 'VIEW':
+            return
         table_path = self._get_export_table_path(dataset_dir)
         with open(table_path, 'w') as f:
             f.write(self.to_file_contents())
