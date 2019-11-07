@@ -64,7 +64,7 @@ class Table:
         dataset_dir : str
             Directory where dataset will be saved
 
-        Returns 
+        Returns
         -------
         str
             The export path
@@ -78,7 +78,7 @@ class Table:
         Returns
         -------
         str
-            File contents 
+            File contents
         """
         return self.view_query or json.dumps(self.schema)
 
@@ -90,7 +90,7 @@ class Table:
 
     def export(self, dataset_dir):
         """Export dataset to specified directory as either an "sql" or "json" file
-        
+
         Parameters
         ----------
         dataset_dir : str
