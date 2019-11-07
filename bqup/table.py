@@ -96,8 +96,7 @@ class Table:
         dataset_dir : str
             Directory where dataset will be saved
         """
-        if not self.export_schema and self.table_type != 'VIEW':
-            return
-        table_path = self._get_export_table_path(dataset_dir)
-        with open(table_path, 'w') as f:
-            f.write(self.to_file_contents())
+        if self.table_type == 'VIEW' or self.export_schema:
+            table_path = self._get_export_table_path(dataset_dir)
+            with open(table_path, 'w') as f:
+                f.write(self.to_file_contents())
