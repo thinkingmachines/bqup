@@ -1,4 +1,5 @@
 import json
+import codecs
 from os import path
 
 
@@ -98,5 +99,5 @@ class Table:
         """
         if self.table_type == 'VIEW' or self.export_schema:
             table_path = self._get_export_table_path(dataset_dir)
-            with open(table_path, 'w') as f:
+            with open(table_path, 'w', encoding='utf-8') as f:
                 f.write(self.to_file_contents())
