@@ -1,5 +1,4 @@
 import json
-import codecs
 from os import path
 
 
