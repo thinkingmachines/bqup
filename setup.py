@@ -8,7 +8,7 @@ with open('requirements.txt') as f:
 
 setup(
     name='bqup',
-    version='0.0.5',
+    version='0.0.6',
     description='BigQuery backup scripts',
     long_description=readme,
     long_description_content_type='text/markdown',
