@@ -130,24 +130,11 @@ Scheduler](https://cloud.google.com/scheduler/)**
 
 ### Distribution
 
-- Rebuild the `dist` directory
+Run `make test` to try a test upload.
 
-  ```
-  $ rm -rf dist
-  $ python3 setup.py bdist_wheel
-  ```
+Run `make dist` to upload a distribution.
 
-- Test upload (optional, needs account)
-
-  ```
-  $ sh twine upload -u thinkdatasci --repository-url https://test.pypi.org/legacy/ dist/*
-  ```
-
-- Final upload
-
-  ```
-  $ sh twine upload -u thinkdatasci dist/*
-  ```
+Both of these will call `make build`, which rebuilds the package locally.
 
 ## Contributing
 
