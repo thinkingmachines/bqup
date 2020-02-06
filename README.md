@@ -116,8 +116,8 @@ Scheduler](https://cloud.google.com/scheduler/)**
 
    ```
    #!/bin/bash
-   <path-to-bqup> -p <project-id> -d <path-to-repo>/projects -fv >> <path-to-log-file>
-   cd <path-to-repo>
+   <absolute-path-to-bqup> -p <project-id> -d <absolute-path-to-repo>/projects -fv >> <absolute-path-to-log-file>
+   cd <absolute-path-to-repo>
    date > last-updated.log
    git add .
    git commit -m "Automated bqup"
