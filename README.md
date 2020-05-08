@@ -139,7 +139,7 @@ Both of these will call `make build`, which rebuilds the package locally.
 ## Contributing
 
 If you wish to contribute, check out our [contributing
-guide](https://github.com/thinkingmachines/bqup/CONTRIBUTING.md)!
+guide](https://github.com/thinkingmachines/bqup/blob/master/CONTRIBUTING.md)!
 
 A list is maintained for all external contributors who have submitted pull
 requests that were subsequently approved. Users are allowed and encouraged to
