@@ -1,6 +1,7 @@
 import os
 from functools import partial
 from bqup.table import Table
+from bqup.routine import Routine
 
 
 class Dataset():
@@ -16,6 +17,9 @@ class Dataset():
 
     tables : list
         list of Tables that are part of the dataset
+
+    routines : list
+        list of Routines(Functions and Procedures) that are part of the dataset
     """
 
     tables = []
@@ -46,6 +50,9 @@ class Dataset():
                 map(partial(Table, self, export_schema),
                     project.client.list_dataset_tables(bq_dataset)))
         else:
+            self.routines = list(
+                map(partial(Routine, self),
+                    project.client.list_routines(bq_dataset.reference)))
             self.tables = list(
                 map(partial(Table, self, export_schema),
                     project.client.list_tables(bq_dataset.reference)))
@@ -56,6 +63,9 @@ class Dataset():
         print("\t[DATASET] {}".format(self.dataset_id))
         for t in self.tables:
             t.print_info()
+        for r in self.routines:
+            r.print_info()
+
 
     def export(self, project_dir):
         """Make a directory for dataset and export schema of each table
@@ -70,3 +80,5 @@ class Dataset():
         os.makedirs(dataset_dir)
         for t in self.tables:
             t.export(dataset_dir)
+        for r in self.routines:
+            r.export(dataset_dir)
