@@ -18,7 +18,6 @@ from bqup.project import Project
 
 
 def main():
-
     args = docopt(__doc__)
 
     target_dir = args['--dir'] or datetime.isoformat(datetime.now())
