@@ -1,5 +1,5 @@
-.PHONY: test
-build:
+.PHONY: test dist
+build: setup.py
 	rm -rf dist
 	python3 setup.py bdist_wheel
 test: build
