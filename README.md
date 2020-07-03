@@ -78,55 +78,9 @@ Options:
 
 5. Run bqup (see [Usage](#usage)).
 
-### Production
-
-**Note: When deploying for a new GCP project, consider using [Cloud
-Scheduler](https://cloud.google.com/scheduler/)**
-
-1. Turn off your host Google Instance.
-2. Enable BigQuery on the instance's Cloud API Access Scopes
-3. Start the instance.
-4. `ssh` into the Google Instance you want to run `bqup` from.
-5. Authorize your Compute Instance Account to read from the target BigQuery project.
-6. Install `bqup` via `pip install bqup`, optionally inside a [virtual environment](https://docs.python.org/3/library/venv.html).
-7. Run `bqup`
-    - If it still doesn't work, check in IAM that the service account you are using has BigQuery read access.
-
 ### Setting up regular backups
 
-1. On the machine that will run your backups, set up your git config (username,
-   email, the usual).
-2. Make a directory to use as the Git repository. For this example, let's use
-   `repo`:
-
-   ```
-   $ mkdir repo cd repo git init
-   ```
-
-3. Add the remote to the git repository (ideally a GCP repository). For this
-   example, let's use `google`:
-
-   ```
-   $ git remote add google <url-to-remote-repository>
-   ```
-
-4. Create a script called `bqup.sh` that follows the following template. For
-   our example, our repository is dedicated to backups, so we just assume that
-   our `HEAD` is the latest and just push gently to `master`.
-
-   ```
-   #!/bin/bash
-   <absolute-path-to-bqup> -p <project-id> -d <absolute-path-to-repo>/projects -fv >> <absolute-path-to-log-file>
-   cd <absolute-path-to-repo>
-   date > last-updated.log
-   git add .
-   git commit -m "Automated bqup"
-   git push <remote> <branch>
-   ```
-
-5. Add this script to your
-   [crontab](https://awc.com.my/uploadnew/5ffbd639c5e6eccea359cb1453a02bed_Setting%20Up%20Cron%20Job%20Using%20crontab.pdf)
-   to run as frequently as your heart desires.
+Check out [bqup-starter](https://github.com/thinkingmachines/bqup-starter) to set up regular bqups using GitHub's workflows!
 
 ### Distribution
 
