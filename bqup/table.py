@@ -72,14 +72,7 @@ class Table:
         table_file_name = '{}.{}.{}'.format(self.table_id, self.table_type.lower(), self._get_export_file_extension())
         return path.join(dataset_dir, table_file_name)
 
-    def to_file_contents(self):
-        """Return file contents
-
-        Returns
-        -------
-        str
-            File contents
-        """
+    def to_file_contents(self) -> str:
         return self.view_query or json.dumps(self.schema)
 
     def print_info(self):
