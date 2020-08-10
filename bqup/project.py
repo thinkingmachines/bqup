@@ -27,12 +27,12 @@ class Project():
 
     datasets = []
 
-    def __init__(self, project_id=None, export_schema=False):
+    def __init__(self, project_id=None, export_schema=False, include_routines=False):
         self.client = bigquery.Client(project_id)
         self.project_id = self.client.project
         print('Loading project {}...'.format(self.project_id))
         self.datasets = list(
-            map(partial(Dataset, self, export_schema), self.client.list_datasets()))
+            map(partial(Dataset, self, export_schema, include_routines), self.client.list_datasets()))
 
     def print_info(self):
         """Displays names of datasets, tables, and views as a hierarchical tree."""

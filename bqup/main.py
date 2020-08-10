@@ -1,7 +1,7 @@
 """bqup - backing up your BigQuery non-data
 
 Usage:
-  bqup [-p PROJECT_ID] [-d TARGET_DIR] [-fvx]
+  bqup [-p PROJECT_ID] [-d TARGET_DIR] [-fvxr]
 
 Options:
   -p PROJECT_ID, --project PROJECT_ID  Project ID to load. If unspecified, defaults to current project in configuration.
@@ -9,6 +9,7 @@ Options:
   -f --force                           Overwrite target directory if it exists.
   -v --verbose                         Print a summary of the loaded project.
   -x --schema                          Export table schemata as json.
+  -r --routine                         Include routines in export.
 
 """
 import os
@@ -29,7 +30,7 @@ def main():
 
     project_id = args['--project']
     print("Loading {}...".format(project_id or "default project"))
-    p = Project(project_id or None, args['--schema'])
+    p = Project(project_id or None, args['--schema'], args['--routine'])
 
     if args['--verbose']:
         p.print()
