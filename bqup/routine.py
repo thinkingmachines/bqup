@@ -120,14 +120,7 @@ class Routine:
         routine_file_name = '{}.{}.{}'.format(self.routine_id, 'function' if self.is_function else 'procedure', self._get_export_file_extension())
         return path.join(dataset_dir, routine_file_name)
 
-    def to_file_contents(self):
-        """Return file contents
-
-        Returns
-        -------
-        str
-            File contents
-        """
+    def to_file_contents(self) -> str:
         return self.routine_query
 
     def print_info(self):
