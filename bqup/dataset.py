@@ -24,7 +24,7 @@ class Dataset():
 
     tables = []
 
-    def __init__(self, project, export_schema, bq_dataset):
+    def __init__(self, project, export_schema, include_routines, bq_dataset):
         """ Creates a Datasets class
 
         Parameters
@@ -50,9 +50,14 @@ class Dataset():
                 map(partial(Table, self, export_schema),
                     project.client.list_dataset_tables(bq_dataset)))
         else:
-            self.routines = list(
-                map(partial(Routine, self),
-                    project.client.list_routines(bq_dataset.reference)))
+
+            if include_routines:
+                self.routines = list(
+                    map(partial(Routine, self),
+                        project.client.list_routines(bq_dataset.reference)))
+            else:
+                self.routines = []
+
             self.tables = list(
                 map(partial(Table, self, export_schema),
                     project.client.list_tables(bq_dataset.reference)))
@@ -65,7 +70,6 @@ class Dataset():
             t.print_info()
         for r in self.routines:
             r.print_info()
-
 
     def export(self, project_dir):
         """Make a directory for dataset and export schema of each table
