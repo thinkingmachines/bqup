@@ -1,7 +1,10 @@
 import os
 from functools import partial
+from multiprocessing import Pool
 from bqup.table import Table
 from bqup.routine import Routine
+
+N_WORKERS = 50
 
 
 class Dataset():
@@ -23,6 +26,7 @@ class Dataset():
     """
 
     tables = []
+    routines = []
 
     def __init__(self, project, export_schema, include_routines, bq_dataset):
         """ Creates a Datasets class
@@ -44,23 +48,28 @@ class Dataset():
         self.dataset_id = bq_dataset.dataset_id
         print('\tLoading dataset {}...'.format(self.dataset_id))
 
+        self.load_tables(bq_dataset, export_schema)
+
+        if include_routines:
+            self.load_routines(bq_dataset)
+
+    def load_tables(self, bq_dataset, export_schema):
         # To support multiple version of google-cloud-bigquery
-        if hasattr(project.client, 'list_dataset_tables'):
-            self.tables = list(
-                map(partial(Table, self, export_schema),
-                    project.client.list_dataset_tables(bq_dataset)))
+        client = self.project.client
+        if hasattr(client, 'list_dataset_tables'):
+            table_source = client.list_dataset_tables(bq_dataset)
         else:
+            table_source = client.list_tables(bq_dataset.reference)
+        with Pool(N_WORKERS) as p:
+            args = [(export_schema, table) for table in table_source]
+            self.tables = list(p.map(Table, args))
+            for table in self.tables:
+                table.dataset = self
 
-            if include_routines:
-                self.routines = list(
-                    map(partial(Routine, self),
-                        project.client.list_routines(bq_dataset.reference)))
-            else:
-                self.routines = []
-
-            self.tables = list(
-                map(partial(Table, self, export_schema),
-                    project.client.list_tables(bq_dataset.reference)))
+    def load_routines(self, bq_dataset):
+        self.routines = list(
+            map(partial(Routine, self),
+                self.project.client.list_routines(bq_dataset.reference)))
 
     def print_info(self):
         """ Print all the tables of a dataset"""

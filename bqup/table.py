@@ -1,5 +1,6 @@
 import json
 from os import path
+from google.cloud import bigquery
 
 
 class Table:
@@ -15,33 +16,38 @@ class Table:
     view_query = ''
     schema = []
 
-    def __init__(self, dataset, export_schema, bq_table):
-        self.dataset = dataset
+    def __init__(self, args):
+
+        (export_schema, bq_table) = args
+
         self.table_id = bq_table.table_id
         print('\t\tLoading table/view {}...'.format(self.table_id))
         self.table_type = bq_table.table_type
         self.export_schema = export_schema
-        dataset.tables.append(self)
 
         # To support multiple versions of google-cloud-bigquery
         ref = bq_table if hasattr(bq_table, 'path') else bq_table.reference
+        project_id = self.table_id.split('.')[0]
+        client = bigquery.Client(project_id)
 
         if self.table_type == 'VIEW':
-            table = dataset.project.client.get_table(ref)
+            table = client.get_table(ref)
             self.view_query = table.view_query
         elif self.table_type == 'TABLE':
             if export_schema:
-                table = dataset.project.client.get_table(ref)
+                table = client.get_table(ref)
                 self.schema = list(map(lambda x: x.to_api_repr(), table.schema))
         elif self.table_type == 'EXTERNAL':
             if export_schema:
-                table = dataset.project.client.get_table(ref)
+                table = client.get_table(ref)
                 self.schema = list(map(lambda x: x.to_api_repr(), table.schema))
         elif self.table_type == 'MODEL':
             print('\t\t\tMODEL table type detected, ignoring.')
             pass
         else:
             raise ValueError('Unrecognized table type: {}'.format(self.table_type))
+
+        client.close()
 
     def _get_export_file_extension(self):
         """Get the file extension for the export file of this table.
