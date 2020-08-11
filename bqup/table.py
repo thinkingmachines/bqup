@@ -1,6 +1,17 @@
 import json
 from os import path
 from google.cloud import bigquery
+from google.api_core.retry import Retry
+from requests.exceptions import ReadTimeout
+
+
+def get_table_with_retry(client, ref):
+    while True:
+        try:
+            return client.get_table(ref, retry=Retry(deadline=60), timeout=5)
+        except ReadTimeout as e:
+            print(e)
+            print('Retrying...')
 
 
 class Table:
@@ -31,15 +42,15 @@ class Table:
         client = bigquery.Client(project_id)
 
         if self.table_type == 'VIEW':
-            table = client.get_table(ref)
+            table = get_table_with_retry(client, ref)
             self.view_query = table.view_query
         elif self.table_type == 'TABLE':
             if export_schema:
-                table = client.get_table(ref)
+                table = get_table_with_retry(client, ref)
                 self.schema = list(map(lambda x: x.to_api_repr(), table.schema))
         elif self.table_type == 'EXTERNAL':
             if export_schema:
-                table = client.get_table(ref)
+                table = get_table_with_retry(client, ref)
                 self.schema = list(map(lambda x: x.to_api_repr(), table.schema))
         elif self.table_type == 'MODEL':
             print('\t\t\tMODEL table type detected, ignoring.')
