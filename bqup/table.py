@@ -29,8 +29,8 @@ class Table:
     def __init__(self, dataset, export_schema, bq_table):
         self.dataset = dataset
         self.table_id = bq_table.table_id
-        print('\t\tLoading table/view {}...'.format(self.table_id))
         self.table_type = bq_table.table_type
+        print(f'\t\tLoading {self.table_type} {self.table_id}...')
         self.export_schema = export_schema
         dataset.tables.append(self)
 
@@ -89,8 +89,7 @@ class Table:
     def print_info(self):
         """Print information about the table
         """
-        print('\t\t[{}] {} ({} bytes)'.format(
-            self.table_type, self.table_id, len(self.view_query)))
+        print(f'\t\t[{self.table_type}] {self.table_id} ({len(self.view_query)} bytes)')
 
     def export(self, dataset_dir):
         """Export dataset to specified directory as either an "sql" or "json" file
@@ -100,7 +99,6 @@ class Table:
         dataset_dir : str
             Directory where dataset will be saved
         """
-        if self.table_type == 'VIEW' or self.export_schema:
-            table_path = self._get_export_table_path(dataset_dir)
-            with open(table_path, 'w', encoding='utf-8') as f:
-                f.write(self.to_file_contents())
+        table_path = self._get_export_table_path(dataset_dir)
+        with open(table_path, 'w', encoding='utf-8') as f:
+            f.write(self.to_file_contents())
