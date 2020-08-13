@@ -1,7 +1,7 @@
 """bqup - backing up your BigQuery non-data
 
 Usage:
-  bqup [-p PROJECT_ID] [-d TARGET_DIR] [-fvxr]
+  bqup [-p PROJECT_ID] [-d TARGET_DIR] [-fvxr] [-e REGEX]
 
 Options:
   -p PROJECT_ID, --project PROJECT_ID  Project ID to load. If unspecified, defaults to current project in configuration.
@@ -10,7 +10,7 @@ Options:
   -v --verbose                         Print a summary of the loaded project.
   -x --schema                          Export table schemata as json.
   -r --routine                         Include routines in export.
-
+  -e REGEX, --regex REGEX              Regex pattern to filter datasets to be exported.
 """
 import os
 from datetime import datetime
@@ -30,7 +30,7 @@ def main():
 
     project_id = args['--project']
     print("Loading {}...".format(project_id or "default project"))
-    p = Project(project_id or None, args['--schema'], args['--routine'])
+    p = Project(project_id or None, args['--schema'], args['--routine'], args['--regex'])
 
     if args['--verbose']:
         p.print()
