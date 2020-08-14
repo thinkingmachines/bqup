@@ -118,6 +118,7 @@ Thanks to all these wonderful people who've helped out with bqup:
 
 - [bhuesemann](https://github.com/bhuesemann)
 - [bzieba-spartez](https://github.com/bzieba-spartez)
+- [profwacko](https://github.com/profwacko)
 
 ## Disclaimers
 
