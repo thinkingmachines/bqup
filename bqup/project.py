@@ -5,6 +5,7 @@ from functools import partial
 from bqup.dataset import Dataset
 import re
 
+
 class Project():
     """Project that enables content exploration and exporting.
 
@@ -34,13 +35,12 @@ class Project():
 
         print('Loading project {}...'.format(self.project_id))
         self.datasets = list(
-            map(partial(Dataset, self, export_schema, include_routines), filter(self.__is_match_dataset_item, self.client.list_datasets())))
+            map(partial(Dataset, self, export_schema, include_routines),
+                filter(self.matches_regex, self.client.list_datasets())))
 
-    def __is_match_dataset_item(self, dataset_item):
-        """Returns match if regex pattern is found in dataset_id"""
-        if not self.regex_pattern: 
-            return True 
-        return re.match(self.regex_pattern, dataset_item.dataset_id)
+    def matches_regex(self, dataset):
+        """Returns match if regex pattern exists and is found in dataset_id"""
+        return not self.regex_pattern or re.match(self.regex_pattern, dataset.dataset_id)
 
     def print_info(self):
         """Displays names of datasets, tables, and views as a hierarchical tree."""
