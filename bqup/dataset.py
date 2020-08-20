@@ -42,7 +42,7 @@ class Dataset():
         self.project = project
         self.project.datasets.append(self)
         self.dataset_id = bq_dataset.dataset_id
-        print('\tLoading dataset {}...'.format(self.dataset_id))
+        print(f'\tLoading dataset {self.dataset_id}...')
 
         # To support multiple version of google-cloud-bigquery
         if hasattr(project.client, 'list_dataset_tables'):
@@ -65,7 +65,7 @@ class Dataset():
     def print_info(self):
         """ Print all the tables of a dataset"""
 
-        print("\t[DATASET] {}".format(self.dataset_id))
+        print(f"\t[DATASET] {self.dataset_id}")
         for t in self.tables:
             t.print_info()
         for r in self.routines:
@@ -80,7 +80,7 @@ class Dataset():
             Path to the project directory where schema will be saved
 
         """
-        dataset_dir = "{}/{}".format(project_dir, self.dataset_id)
+        dataset_dir = f"{project_dir}/{self.dataset_id}"
         os.makedirs(dataset_dir)
         for t in self.tables:
             t.export(dataset_dir)

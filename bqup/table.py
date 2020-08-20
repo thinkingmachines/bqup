@@ -52,7 +52,7 @@ class Table:
             print('\t\t\tMODEL table type detected, ignoring.')
             pass
         else:
-            raise ValueError('Unrecognized table type: {}'.format(self.table_type))
+            raise ValueError(f'Unrecognized table type: {self.table_type}')
 
     def _get_export_file_extension(self):
         """Get the file extension for the export file of this table.
@@ -80,7 +80,7 @@ class Table:
         str
             The export path
         """
-        table_file_name = '{}.{}.{}'.format(self.table_id, self.table_type.lower(), self._get_export_file_extension())
+        table_file_name = f'{self.table_id}.{self.table_type.lower()}.{self._get_export_file_extension()}'
         return path.join(dataset_dir, table_file_name)
 
     def to_file_contents(self) -> str:
