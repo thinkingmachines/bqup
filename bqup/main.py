@@ -33,7 +33,7 @@ def main():
     p = Project(project_id or None, args['--schema'], args['--routine'], args['--regex'])
 
     if args['--verbose']:
-        p.print()
+        p.print_info()
 
     print("Loaded {}.".format(p.project_id))
 
