@@ -84,7 +84,7 @@ class Table:
         return path.join(dataset_dir, table_file_name)
 
     def to_file_contents(self) -> str:
-        return self.view_query or json.dumps(self.schema)
+        return self.view_query or json.dumps(self.schema, sort_keys=True)
 
     def print_info(self):
         """Print information about the table
