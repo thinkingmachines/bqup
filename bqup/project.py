@@ -33,7 +33,7 @@ class Project():
         self.project_id = self.client.project
         self.regex_pattern = regex_pattern
 
-        print('Loading project {}...'.format(self.project_id))
+        print(f'Loading project {self.project_id}...')
         self.datasets = list(
             map(partial(Dataset, self, export_schema, include_routines),
                 filter(self.matches_regex, self.client.list_datasets())))
@@ -44,7 +44,7 @@ class Project():
 
     def print_info(self):
         """Displays names of datasets, tables, and views as a hierarchical tree."""
-        print("[PROJECT] {}".format(self.project_id))
+        print(f"[PROJECT] {self.project_id}")
         for d in self.datasets:
             d.print_info()
 
@@ -62,10 +62,9 @@ class Project():
             if force:
                 shutil.rmtree(directory)
             else:
-                raise Exception(
-                    "Cannot extract project contents to an existing directory: [{}]".format(directory))
+                raise Exception(f"Cannot extract project contents to an existing directory: [{directory}]")
 
-        project_dir = "{}/{}".format(directory, self.project_id)
+        project_dir = f"{directory}/{self.project_id}"
         os.makedirs(project_dir)
         for d in self.datasets:
             d.export(project_dir)

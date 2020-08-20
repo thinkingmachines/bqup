@@ -29,17 +29,17 @@ def main():
         exit()
 
     project_id = args['--project']
-    print("Loading {}...".format(project_id or "default project"))
+    print(f"Loading {project_id or 'default project'}...")
     p = Project(project_id or None, args['--schema'], args['--routine'], args['--regex'])
 
     if args['--verbose']:
         p.print_info()
 
-    print("Loaded {}.".format(p.project_id))
+    print(f"Loaded {p.project_id}.")
 
-    print("Exporting {} to {}...".format(p.project_id, target_dir))
+    print(f"Exporting {p.project_id} to {target_dir}...")
     p.export(target_dir, force=force)
-    print("Project {} exported to {}.".format(p.project_id, target_dir))
+    print(f"Project {p.project_id} exported to {target_dir}.")
 
 
 if __name__ == "__main__":
