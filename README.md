@@ -34,7 +34,7 @@ $ python3 setup.py install
 You can list down the options by running `bqup --help`.
 
 ```text
-bqup [-p PROJECT_ID] [-d TARGET_DIR] [-fvx]
+bqup [-p PROJECT_ID] [-d TARGET_DIR] [-fvxr] [-e REGEX]
 
 Options:
   -p PROJECT_ID, --project PROJECT_ID  Project ID to load. If unspecified,
@@ -46,6 +46,8 @@ Options:
   -f --force                           Overwrite target directory if it exists.
   -v --verbose                         Print a summary of the loaded project.
   -x --schema                          Export table schemata as json.
+  -r --routine                         Include routines in export.
+  -e REGEX, --regex REGEX              Regex pattern to filter datasets to be exported.
 ```
 
 ### Development
