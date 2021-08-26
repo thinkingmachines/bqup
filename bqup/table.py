@@ -39,7 +39,7 @@ class Table:
 
         if self.table_type == 'VIEW':
             table = get_table_with_retry(dataset.project.client, ref)
-            self.view_query = f'CREATE OR REPLACE VIEW {self.dataset.dataset_id}.{self.table_id} AS \n{table.view_query}'
+            self.view_query = f'CREATE OR REPLACE VIEW {self.dataset.dataset_id}.{self.table_id} AS\n{table.view_query}'
         elif self.table_type == 'TABLE':
             if export_schema:
                 table = get_table_with_retry(dataset.project.client, ref)
@@ -51,6 +51,9 @@ class Table:
         elif self.table_type == 'MODEL':
             print('\t\t\tMODEL table type detected, ignoring.')
             pass
+        elif self.table_type == 'MATERIALIZED_VIEW':
+            table = get_table_with_retry(dataset.project.client, ref)
+            self.view_query = f'CREATE MATERIALIZED VIEW IF NOT EXISTS {self.dataset.dataset_id}.{self.table_id} AS\n{table.mview_query}'
         else:
             raise ValueError(f'Unrecognized table type: {self.table_type}')
 
