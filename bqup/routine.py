@@ -32,11 +32,8 @@ class Routine:
         )
 
     def _get_arguments(self, routine):
-        arguments_str = ''
-        arguments = routine.to_api_repr().get('arguments', [])
-        if len(arguments) > 0:
-            arguments_str = ', '.join((self._get_parameter(argument) for argument in arguments))
-        return arguments_str
+        args = routine.to_api_repr().get('arguments', [])
+        return ', '.join(map(self._get_parameter, args))
 
     def _get_parameter(self, argument):
         name = argument['name']
