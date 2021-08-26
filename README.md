@@ -122,6 +122,7 @@ Thanks to all these wonderful people who've helped out with bqup:
 - [bzieba-spartez](https://github.com/bzieba-spartez)
 - [profwacko](https://github.com/profwacko)
 - [urtho](https://github.com/urtho)
+- [ajkruse](https://github.com/ajkruse)
 
 ## Disclaimers
 

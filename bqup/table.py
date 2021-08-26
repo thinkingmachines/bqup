@@ -38,8 +38,8 @@ class Table:
         ref = bq_table if hasattr(bq_table, 'path') else bq_table.reference
 
         if self.table_type == 'VIEW':
-            table = get_table_with_retry(dataset.project.client, ref)            
-            self.view_query = 'CREATE OR REPLACE VIEW ' + self.dataset.dataset_id + '.' + self.table_id + ' AS \n' + table.view_query
+            table = get_table_with_retry(dataset.project.client, ref)
+            self.view_query = f'CREATE OR REPLACE VIEW {self.dataset.dataset_id}.{self.table_id} AS \n{table.view_query}'
         elif self.table_type == 'TABLE':
             if export_schema:
                 table = get_table_with_retry(dataset.project.client, ref)

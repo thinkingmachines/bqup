@@ -22,16 +22,18 @@ class Routine:
         self.routine_query = self._get_create_or_replace(routine)
 
     def _get_create_or_replace(self, routine):
-        return 'CREATE OR REPLACE ' + self.routine_type.upper() + " `" + self._get_full_name(routine) + "`(" \
-               + self._get_arguments(routine) + ")" \
-               + self._get_return(routine) \
-               + self._get_language(routine) \
-               + self._get_options(routine) \
-               + self._get_body(routine) + ";"
+        return (
+            f'CREATE OR REPLACE {self.routine_type.upper()} `{self._get_full_name(routine)}`('
+            + f'{self._get_arguments(routine)})'
+            + self._get_return(routine)
+            + self._get_language(routine)
+            + self._get_options(routine)
+            + f'{self._get_body(routine)};'
+        )
 
     def _get_arguments(self, routine):
         arguments_str = ''
-        arguments = routine.to_api_repr().get('arguments',[])
+        arguments = routine.to_api_repr().get('arguments', [])
         if len(arguments) > 0:
             arguments_str = ', '.join((self._get_parameter(argument) for argument in arguments))
         return arguments_str
