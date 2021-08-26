@@ -16,15 +16,15 @@ post](https://stories.thinkingmachin.es/coding-safely-in-the-cloud/)!
 bqup can be installed using `pip`.
 
 ```
-$ pip install bqup
+pip install bqup
 ```
 
 Alternatively, you can also clone the repository then run `install`.
 
 ```
-$ git clone https://github.com/thinkingmachines/bqup.git
-$ cd bqup
-$ python3 setup.py install
+git clone https://github.com/thinkingmachines/bqup.git
+cd bqup
+python3 setup.py install
 ```
 
 ## Usage
@@ -57,13 +57,13 @@ Options:
    [application-default](https://cloud.google.com/sdk/gcloud/reference/auth/application-default/login).
 
    ```
-   $ gcloud auth application-default login
+   gcloud auth application-default login
    ```
 
 3. Install `wheel`.
 
    ```
-   $ pip3 install wheel
+   pip3 install wheel
    ```
 
 4. Install bqup.
