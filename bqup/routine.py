@@ -84,11 +84,15 @@ class Routine:
         return language
 
     def _get_body(self, routine):
-        if routine.language == 'SQL':
-            sep_start, sep_end = '(', ')'
+        if self.routine_type == 'procedure':
+            body = routine.body.strip()
+            return f'\n{body}\n'
         else:
-            sep_start = sep_end = '"""'
-        return f'AS {sep_start} \n {routine.body.strip()} \n {sep_end}'
+            if routine.language == 'SQL':
+                sep_start, sep_end = '(', ')'
+            else:
+                sep_start = sep_end = '"""'
+            return f'AS {sep_start}\n{body}\n{sep_end}'
 
     def _get_export_file_extension(self):
         """Get the file extension for the export file of this routine.
