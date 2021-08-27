@@ -84,8 +84,8 @@ class Routine:
         return language
 
     def _get_body(self, routine):
+        body = routine.body.strip()
         if self.routine_type == 'procedure':
-            body = routine.body.strip()
             return f'\n{body}\n'
         else:
             if routine.language == 'SQL':
