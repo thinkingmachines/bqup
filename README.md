@@ -108,8 +108,7 @@ contributions adhere to these guidelines:
 The official maintainers in charge of responding to issues and merging pull
 requests are:
 
-- [Pepe Bawagan](https://github.com/syk0saje)
-- [Mark Steve Samson](https://github.com/marksteve)
+- [Pepe Bawagan](https://github.com/tm-pepe-bawagan)
 - [Carlson Cheng](https://github.com/crcheng)
 
 ## Contributors
