@@ -1,0 +1,21 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: bqup
+  title: bqup
+  description: Backup utility for BigQuery schemata and views logic
+  annotations:
+    backstage.io/techdocs-ref: dir:.
+    github.com/project-slug: thinkingmachines/bqup
+  links:
+    - url: https://stories.thinkingmachin.es/coding-safely-in-the-cloud/
+      title: Bqup TM Story
+      icon: docs
+
+  tags:
+    - bigquery
+    - python
+spec:
+  type: internal
+  lifecycle: production
+  owner: user:tm-pepe-bawagan
