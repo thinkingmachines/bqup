@@ -95,25 +95,6 @@ Run `make dist` to upload a distribution.
 
 Both of these will call `make build`, which rebuilds the package locally.
 
-## Contributing
-
-If you wish to contribute, check out our [contributing
-guide](https://github.com/thinkingmachines/bqup/blob/master/CONTRIBUTING.md)!
-
-A list is maintained for all external contributors who have submitted pull
-requests that were subsequently approved. Users are allowed and encouraged to
-fork the project and submit pull requests and issues. We only request that
-contributions adhere to these guidelines:
-
-- [Commit messages](https://chris.beams.io/posts/git-commit/)
-- [Github flow](https://guides.github.com/introduction/flow/)
-
-The official maintainers in charge of responding to issues and merging pull
-requests are:
-
-- [Pepe Bawagan](https://github.com/tm-pepe-bawagan)
-- [Carlson Cheng](https://github.com/crcheng)
-
 ## Contributors
 
 Thanks to all these wonderful people who've helped out with bqup:
@@ -128,16 +109,8 @@ Thanks to all these wonderful people who've helped out with bqup:
 
 ## Disclaimers
 
-bqup is maintained on a **best effort** basis:
+bqup is **no longer being maintained**
 
-- No amount of official time is currently being dedicated to the regular
-  maintenance of this project.
+- There are currently no plans to maintain this project.
 - Thinking Machines does not make any guarantees about the quality of the
   software.
-
-Thinking Machines reserves the rights to:
-
-- refuse to resolve issues
-- close issues without resolution
-- request changes to pull requests
-- reject pull requests outright
