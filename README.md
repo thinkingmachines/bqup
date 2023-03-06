@@ -1,3 +1,7 @@
+:::
+If this is your first time checking out bqup, you might want to try out [Dataform](https://dataform.co/) or [dbt](https://www.getdbt.com/) instead!
+:::
+
 # bqup
 
 bqup is a backup tool for BigQuery projects. It can export a BigQuery
