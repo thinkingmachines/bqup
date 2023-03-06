@@ -1,6 +1,5 @@
-:::
-If this is your first time checking out bqup, you might want to try out [Dataform](https://dataform.co/) or [dbt](https://www.getdbt.com/) instead!
-:::
+> **Note**
+> If this is your first time checking out bqup, you might want to try out [Dataform](https://dataform.co/) or [dbt](https://www.getdbt.com/) instead!
 
 # bqup
 
