@@ -17,5 +17,5 @@ metadata:
     - python
 spec:
   type: internal
-  lifecycle: production
+  lifecycle: deprecated
   owner: user:tm-pepe-bawagan
